@@ -5,20 +5,28 @@ library(pROC)
 
 
 
-model_gbm_100 <- gbm(as.character(ROTULO)~., 
+GBM100 <- gbm(as.character(ROTULO)~., 
                  data=banco_treino[,-M], 
                  distribution="bernoulli", 
                  n.trees=100,
                  shrinkage = 0.1,
                  verbose=FALSE)
 
-model_gbm_300 <- gbm(as.character(ROTULO)~., 
+GBM300 <- gbm(as.character(ROTULO)~., 
                      data=banco_treino[,-M], 
                      distribution="bernoulli", 
                      n.trees=300,
                      shrinkage = 0.1,
                      verbose=FALSE)
 
+GBM500 <- gbm(as.character(ROTULO)~., 
+              data=banco_treino[,-M], 
+              distribution="bernoulli", 
+              n.trees=500,
+              shrinkage = 0.1,
+              verbose=FALSE)
+
+
 # Salvando modelo
-save(model_gbm_100, file="GBM100_obj.RData")
-save(model_gbm_300, file="GBM300_obj.RData")
+save(GBM100,GBM300,GBM500, file="GBM_obj.RData")
+
